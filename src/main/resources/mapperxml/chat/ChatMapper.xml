@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.biologyera.mapper.chat.ChatMapper">
+
+  <select id="selectChatList" resultType="org.example.biologyera.model.chat.vo.ChatVO">
+    select room_id,answer,question from chat_message where room_id = #{roomId}
+  </select>
+
+  <select id="getHistory" resultType="org.example.biologyera.model.chat.po.History">
+    select question,answer from chat_message where room_id = #{roomId} order by create_time
+  </select>
+
+  <insert id="createAiRoom">
+    insert into chat_room (person_id, create_person,update_person) VALUES (#{personId,jdbcType=BIGINT},#{personId,jdbcType=BIGINT},#{personId,jdbcType=BIGINT})
+  </insert>
+
+  <select id="getIdByPersonId" resultType="java.lang.Integer">
+    select id from chat_room where person_id = #{personId,jdbcType=BIGINT}
+  </select>
+
+  <insert id="insertMessage">
+    INSERT INTO chat_message(question, answer, room_id) VALUES (#{question},#{answer},#{roomId})
+  </insert>
+
+  <select id="getRoomId" resultType="org.example.biologyera.model.chat.vo.ChatRoomMegVO">
+    select id roomId,create_time,update_time from chat_room where person_id = #{personId,jdbcType=BIGINT}
+  </select>
+
+  <select id="getChatMegByRoomId" resultType="org.example.biologyera.model.chat.vo.ChatMessageVO">
+    select question, answer, room_id, create_time from chat_message where room_id in
+      <foreach collection="roomIds" item="roomId" open="(" separator="," close=")">
+         #{roomId}
+      </foreach>
+  </select>
+</mapper>
