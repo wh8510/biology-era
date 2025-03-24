@@ -19,3 +19,17 @@ DeepSeek:
   url: "https://api.deepseek.com/chat/completions"
   model: "deepseek-reasoner"
   apiKey: "sk-674fa5a88e6d4783b98f972e77c7e10d"
+Masterpiece-X:
+  BEARER_TOKEN: "zpka_4177be78f6ca4651b857d448abe59ba4_6fde9a54"
+  GenerateImageTo3D: "https://api.genai.masterpiecex.com/v2/functions/imageto3d"
+  GeneratesAnImageFromATextPrompt: "https://api.genai.masterpiecex.com/v2/components/text2image"
+  GetStatus: "https://api.genai.masterpiecex.com/v2/status/"
+ZhiPu:
+  apiKey: "9ecb14421c67429f85336336fb05db58.d2AKYFXGG2Nq5dzO"
+  imageUrl: "https://open.bigmodel.cn/api/paas/v4/images/generations"
+  messageUrl: "https://open.bigmodel.cn/api/paas/v4/chat/completions"
+  videoUrl: "https://open.bigmodel.cn/api/paas/v4/videos/generations"
+  getVideoUrl: "https://open.bigmodel.cn/api/paas/v4/async-result/"
+  imageModel: "cogview-4-250304"
+  messageModel: "glm-4v-plus"
+  videoModel: "cogvideox-2"

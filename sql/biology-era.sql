@@ -126,4 +126,15 @@ CREATE TABLE IF NOT EXISTS chat_message (
   default charset = utf8mb4
   collate = utf8mb4_0900_ai_ci
     comment 'ai对话信息表';
-select question, answer, room_id, create_time from chat_message where room_id in(1001,1002,1003)
+# 3d模型生成信息表
+CREATE TABLE IF NOT EXISTS masterpiece_info (
+       `id` INT PRIMARY KEY AUTO_INCREMENT,
+       `person_id` BIGINT NOT NULL,
+       `out_url` VARCHAR(255),
+       `create_time` DATETIME not null default current_timestamp comment '创建日期',
+       foreign key (`person_id`) references person_info (`id`)
+) ENGINE =innodb
+  auto_increment = 1000
+  default charset = utf8mb4
+  collate = utf8mb4_0900_ai_ci
+    comment '3d模型生成信息表';
