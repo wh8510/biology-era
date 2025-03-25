@@ -29,4 +29,10 @@ public interface MasterpieceService {
      * @return 模型的url
      */
     Generate3dModelUrlVO generate3DModelByMeg(ZhiPuGenerateImageDTO zhiPuGenerateImageDTO) throws IOException;
+    /**
+     * 根据id查询生成3d模型
+     *
+     * @return 模型的url
+     */
+    Generate3dModelUrlVO get3DModelById();
 }

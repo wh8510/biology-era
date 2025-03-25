@@ -11,8 +11,8 @@ import lombok.Data;
  */
 @Data
 public class History {
-    private String videoMeg;
-    private String imageMeg;
+    private String videoUrl;
+    private String imageUrl;
     private String question;
     private String answer;
 }

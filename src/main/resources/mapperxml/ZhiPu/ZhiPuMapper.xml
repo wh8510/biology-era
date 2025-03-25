@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.biologyera.mapper.ZhiPu.ZhiPuMapper">
+
+    <insert id="createImageUnderstandRoom">
+        insert into chat_image_url_room(person_id, create_person, update_person) VALUES (#{personId,jdbcType=BIGINT},#{personId,jdbcType=BIGINT},#{personId,jdbcType=BIGINT})
+    </insert>
+    <select id="getImageHistory" resultType="org.example.biologyera.model.ZhiPu.po.History">
+        select * from chat_image_url_message where room_id = #{roomId,jdbcType=INTEGER}
+    </select>
+
+    <insert id="insertImageMessage">
+        insert into chat_image_url_message(image_url, question, answer, room_id, create_time)
+        VALUES (#{imageMeg},#{question},#{answer},#{roomId},#{createTime})
+    </insert>
+
+    <select id="getImageRoomByPersonId" resultType="java.lang.Integer">
+        select id from chat_image_url_room where person_id = #{personId,jdbcType=BIGINT}
+    </select>
+
+    <select id="getImageRoomMegById" resultType="org.example.biologyera.model.ZhiPu.vo.ZhiPuImageMegVO">
+        select * from chat_image_url_message where room_id in
+        <foreach collection="roomIds" item="roomId" open="(" separator="," close=")">
+            #{roomId}
+        </foreach>
+    </select>
+
+    <select id="getVideoHistory" resultType="org.example.biologyera.model.ZhiPu.po.History">
+        select * from chat_video_url_message where room_id = #{roomId,jdbcType=INTEGER}
+    </select>
+
+    <insert id="insertVideoMessage">
+        insert into chat_video_url_message(video_url, question, answer, room_id, create_time)
+        VALUES (#{videoMeg},#{question},#{answer},#{roomId},#{createTime})
+    </insert>
+
+    <insert id="createVideoUnderstandRoom">
+        insert into chat_video_url_room(person_id, create_person, update_person) VALUES (#{personId,jdbcType=BIGINT},#{personId,jdbcType=BIGINT},#{personId,jdbcType=BIGINT})
+    </insert>
+
+    <select id="getVideoRoomByPersonId" resultType="java.lang.Integer">
+        select id from chat_video_url_room where person_id = #{personId,jdbcType=BIGINT}
+    </select>
+
+    <select id="getVideoRoomMegById" resultType="org.example.biologyera.model.ZhiPu.vo.ZhiPuVideoMegVO">
+        select * from chat_video_url_message where room_id in
+        <foreach collection="roomIds" item="roomId" open="(" separator="," close=")">
+            #{roomId}
+        </foreach>
+    </select>
+</mapper>

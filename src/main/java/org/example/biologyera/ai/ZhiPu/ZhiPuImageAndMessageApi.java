@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import org.example.biologyera.common.model.ErrorCode;
+import org.example.biologyera.exception.AssertionException;
 import org.example.biologyera.model.ZhiPu.dto.ZhiPuGenerateImageDTO;
 import org.example.biologyera.model.ZhiPu.dto.ZhiPuGenerateMessageDTO;
 import org.example.biologyera.model.ZhiPu.po.History;
@@ -173,7 +175,7 @@ public class ZhiPuImageAndMessageApi {
             //组装url部分
             url.put("url", zhiPuGenerateMessageDTO.getVideoMeg());
             content2JsonArray.put("video_url", url);
-        } else throw new RuntimeException("图片/视频的输入不能为空");
+        } else throw new AssertionException(ErrorCode.PARAMS_ERROR,"图片/视频的输入不能同时为空");
         //组装content部分
         JSONArray contentJsonArray = new JSONArray();
         contentJsonArray.add(content1JsonArray);
@@ -198,12 +200,12 @@ public class ZhiPuImageAndMessageApi {
             if (!zhiPuGenerateMessageDTO.getImageMeg().isEmpty()) {
                 content2JsonArray.put("type", "image_url");
                 //组装url部分
-                url.put("url", h.getImageMeg());
+                url.put("url", h.getImageUrl());
                 content2JsonArray.put("image_url", url);
             } else if (!zhiPuGenerateMessageDTO.getVideoMeg().isEmpty()) {
                 content2JsonArray.put("type", "video_url");
                 //组装url部分
-                url.put("url", h.getVideoMeg());
+                url.put("url", h.getVideoUrl());
                 content2JsonArray.put("video_url", url);
             } else throw new RuntimeException("图片/视频的输入不能为空");
             //组装content部分

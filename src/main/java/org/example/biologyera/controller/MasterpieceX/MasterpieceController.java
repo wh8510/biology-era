@@ -43,4 +43,13 @@ public class MasterpieceController {
     public BaseResponse<Generate3dModelUrlVO> generate3DModelByMeg(@RequestBody ZhiPuGenerateImageDTO zhiPuGenerateImageDTO) throws IOException {
         return ResultUtil.success(masterpieceService.generate3DModelByMeg(zhiPuGenerateImageDTO));
     }
+    /**
+     * 根据id查询生成3d模型
+     *
+     * @return 模型的url
+     */
+    @GetMapping("/meg/id")
+    public BaseResponse<Generate3dModelUrlVO> get3DModelById() throws IOException {
+        return ResultUtil.success(masterpieceService.get3DModelById());
+    }
 }

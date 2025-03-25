@@ -62,4 +62,17 @@ public class MasterpieceServiceImpl implements MasterpieceService {
         masterpieceMapper.saveMasterpieceInfo(personId,generate3dModelUrlVO.getOutputUrl());
         return generate3dModelUrlVO;
     }
+    /**
+     * 根据id查询生成3d模型
+     *
+     * @return 模型的url
+     */
+    @Override
+    public Generate3dModelUrlVO get3DModelById() {
+        Long personId = GetIdByHttp.GetIdByHttpServletRequest();
+        String outUrl = masterpieceMapper.get3DModelById(personId);
+        Generate3dModelUrlVO generate3dModelUrlVO = new Generate3dModelUrlVO();
+        generate3dModelUrlVO.setOutputUrl(outUrl);
+        return generate3dModelUrlVO;
+    }
 }

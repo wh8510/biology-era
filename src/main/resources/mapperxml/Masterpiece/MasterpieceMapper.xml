@@ -6,4 +6,8 @@
     INSERT INTO masterpiece_info(person_id, out_url) VALUES
       (#{personId,jdbcType=BIGINT},#{outputUrl,jdbcType=VARCHAR})
   </insert>
+
+  <select id="get3DModelById" resultType="java.lang.String">
+    select out_url from masterpiece_info where person_id = #{personId,jdbcType=BIGINT}
+  </select>
 </mapper>

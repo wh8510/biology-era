@@ -138,3 +138,63 @@ CREATE TABLE IF NOT EXISTS masterpiece_info (
   default charset = utf8mb4
   collate = utf8mb4_0900_ai_ci
     comment '3d模型生成信息表';
+# ai图片房间表
+CREATE TABLE IF NOT EXISTS chat_image_url_room (
+        `id` INT PRIMARY KEY AUTO_INCREMENT,
+        `person_id` BIGINT NOT NULL,
+        `create_time`   datetime                                                          not null default current_timestamp comment '创建日期',
+        `create_person` bigint                                                            null comment '创建人',
+        `update_time`   datetime                                                          not null default current_timestamp on update current_timestamp comment '修改日期',
+        `update_person` bigint                                                            null comment '修改人',
+        foreign key (`person_id`) references person_info (`id`),
+        foreign key (`create_person`) references system_role (`id`),
+        foreign key (`update_person`) references system_role (`id`)
+) ENGINE =innodb
+  auto_increment = 1000
+  default charset = utf8mb4
+  collate = utf8mb4_0900_ai_ci
+    comment 'ai图片房间表';
+# ai图片对话信息表
+CREATE TABLE IF NOT EXISTS chat_image_url_message (
+        `id` INT PRIMARY KEY AUTO_INCREMENT,
+        `image_url` Varchar(255),
+        `question` TEXT,
+        `answer` TEXT,
+        `room_id` INT NOT NULL,
+        `create_time` DATETIME not null default current_timestamp comment '创建日期',
+        foreign key (`room_id`) references chat_image_url_room (`id`)
+) ENGINE =innodb
+  auto_increment = 1000
+  default charset = utf8mb4
+  collate = utf8mb4_0900_ai_ci
+    comment 'ai图片对话信息表';
+# ai视频房间表
+CREATE TABLE IF NOT EXISTS chat_video_url_room (
+         `id` INT PRIMARY KEY AUTO_INCREMENT,
+         `person_id` BIGINT NOT NULL,
+         `create_time`   datetime                                                          not null default current_timestamp comment '创建日期',
+         `create_person` bigint                                                            null comment '创建人',
+         `update_time`   datetime                                                          not null default current_timestamp on update current_timestamp comment '修改日期',
+         `update_person` bigint                                                            null comment '修改人',
+         foreign key (`person_id`) references person_info (`id`),
+         foreign key (`create_person`) references system_role (`id`),
+         foreign key (`update_person`) references system_role (`id`)
+) ENGINE =innodb
+  auto_increment = 1000
+  default charset = utf8mb4
+  collate = utf8mb4_0900_ai_ci
+    comment 'ai视频房间表';
+# ai视频对话信息表
+CREATE TABLE IF NOT EXISTS chat_video_url_message (
+         `id` INT PRIMARY KEY AUTO_INCREMENT,
+         `video_url` Varchar(255),
+         `question` TEXT,
+         `answer` TEXT,
+         `room_id` INT NOT NULL,
+         `create_time` DATETIME not null default current_timestamp comment '创建日期',
+         foreign key (`room_id`) references chat_video_url_room (`id`)
+) ENGINE =innodb
+  auto_increment = 1000
+  default charset = utf8mb4
+  collate = utf8mb4_0900_ai_ci
+    comment 'ai视频对话信息表';

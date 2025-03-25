@@ -13,4 +13,6 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface MasterpieceMapper {
     void saveMasterpieceInfo(@Param("personId") Long personId,@Param("outputUrl") String outputUrl);
+
+    String get3DModelById(@Param("personId") Long personId);
 }
